@@ -69,7 +69,12 @@ const item = new Item({
 item.save();
 res.redirect("/");
 });
-
+app.post("/delete",function(req,res)
+{
+  const checkedItemId=req.body.checkbox;
+  Item.findByIdAndRemove({_id:checkedItemId},function(err){});
+  res.redirect("/");
+});
 app.get("/work", function(req,res){
   res.render("list", {listTitle: "Work List", newListItems: workItems});
 });
